@@ -7,6 +7,7 @@ class App extends Component{
     super();
     this.state = {
       show : true,
+      counter: 0,
       Person : { 
                 fullName : "Oussama Guezguez",
                 bio : "Ingénieur informatique", 
@@ -15,8 +16,8 @@ class App extends Component{
               },
     }
     this.clickHandler = this.clickHandler.bind(this);
+    
   }
-  
 
 
   clickHandler(){
@@ -26,7 +27,24 @@ class App extends Component{
       }
     });
   }
-
+  newYearCountdown(){ setInterval(() => {
+    console.log( this.state.counter);
+    this.setState({ counter: this.state.counter+1});
+    
+  }, 1000);}
+  
+  componentDidMount(){
+    
+      this.newYearCountdown();
+    /*var newYearCountdown = setInterval(function(){
+      var counter = 0;
+      console.log(counter);
+      counter++;
+      //this.setState({counter : this.state.counter+1})
+    }, 1000);*/
+  }
+  
+  
   render(){
     if(this.state.show)
     return (
@@ -37,6 +55,7 @@ class App extends Component{
         <h1>{this.state.Person.fullName}</h1>
         <h2>{this.state.Person.bio}</h2>
         <h2>{this.state.Person.profession}</h2>
+        <h2>{this.state.counter}</h2>
       </div>
       );
       else return (
